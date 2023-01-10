@@ -51,7 +51,6 @@ struct LinkPreviewDesign: View {
     @ViewBuilder
     var smallType: some View {
         HStack(spacing: 8){
-            VStack(alignment: .leading, spacing: 0){
                 if let title = metaData.title {
                     Text(title)
                         .font(.subheadline)
@@ -60,19 +59,12 @@ struct LinkPreviewDesign: View {
                         .foregroundColor(primaryFontColor)
                         .lineLimit(titleLineLimit)
                 }
-                
-                if let url = metaData.url?.host {
-                    Text("\(url)")
-                        .foregroundColor(secondaryFontColor)
-                        .font(.footnote)
-                }
-            }
             
             if let img = image {
                 Image(uiImage: img)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 32, height: 32, alignment: .center)
+                    .frame(width: 25, height: 25, alignment: .center)
                     .clipped()
                     .cornerRadius(4)
             }
