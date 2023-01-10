@@ -52,7 +52,7 @@ struct LinkPreviewDesign: View {
     var smallType: some View {
         HStack(spacing: 8){
             if let url = metaData.url?.host {
-                    Text("\(url)")
+                Text("\(url)")
                         .font(.subheadline)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(primaryFontColor)
@@ -62,7 +62,7 @@ struct LinkPreviewDesign: View {
             if let img = image {
                 Image(uiImage: img)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 25, height: 25, alignment: .center)
                     .clipped()
                     .cornerRadius(4)
