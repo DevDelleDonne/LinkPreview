@@ -55,7 +55,7 @@ struct LinkPreviewDesign: View {
                 Image(uiImage: img)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 25, height: 25, alignment: .center)
+                    .frame(width: 22, height: 22, alignment: .center)
                     .clipped()
                     .cornerRadius(4)
             }
@@ -64,7 +64,7 @@ struct LinkPreviewDesign: View {
                     .resizable()
                     .foregroundColor(secondaryFontColor)
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 24, height: 24, alignment: .center)
+                    .frame(width: 22, height: 22, alignment: .center)
             }
 //                if let title = metaData.title {
 //                    Text(title)
@@ -76,8 +76,10 @@ struct LinkPreviewDesign: View {
             if #available(iOS 16.0, *) {
                 if let url = metaData.url?.host() {
                     Text("\(url)")
-                        .foregroundColor(secondaryFontColor)
-                        .font(.footnote)
+                        .font(.subheadline)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(primaryFontColor)
+                        .lineLimit(titleLineLimit)
                 }
             } else {
                 // Fallback on earlier versions
