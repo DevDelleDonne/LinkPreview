@@ -51,18 +51,10 @@ struct LinkPreviewDesign: View {
     @ViewBuilder
     var smallType: some View {
         HStack(spacing: 8){
-            if let url = metaData.url?.host {
-                Text("\(url)")
-                        .font(.subheadline)
-                        .multilineTextAlignment(.leading)
-                        .foregroundColor(primaryFontColor)
-                        .lineLimit(titleLineLimit)
-                }
-            
             if let img = image {
                 Image(uiImage: img)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25, alignment: .center)
                     .clipped()
                     .cornerRadius(4)
@@ -74,15 +66,31 @@ struct LinkPreviewDesign: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 24, height: 24, alignment: .center)
             }
+                if let title = metaData.title {
+                    Text(title)
+                        .font(.subheadline)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(primaryFontColor)
+                        .lineLimit(titleLineLimit)
+                }
+            if #available(iOS 16.0, *) {
+                if let url = metaData.url?.host() {
+                    Text("\(url)")
+                        .foregroundColor(secondaryFontColor)
+                        .font(.footnote)
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+            
+            
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
+        .padding(5)
         .background(
             Rectangle()
                 .foregroundColor(backgroundColor)
         )
-        .cornerRadius(12)
-        .frame(width: 200, height: 20, alignment: .center)
+        .clipShape(RoundedRectangle(cornerRadius: 9))
     }
     
     @ViewBuilder
