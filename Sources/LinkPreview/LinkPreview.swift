@@ -43,12 +43,12 @@ public struct LinkPreview: View {
                         .font(.caption)
                         .foregroundColor(primaryFontColor)
                 }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
+                .padding(5)
                 .background(
-                    Capsule()
+                    Rectangle()
                         .foregroundColor(backgroundColor)
                 )
+                .clipShape(RoundedRectangle(cornerRadius: 9))
                 .onAppear(perform: {
                     getMetaData(url: url)
                 })
