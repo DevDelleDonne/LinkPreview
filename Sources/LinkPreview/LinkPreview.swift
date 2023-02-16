@@ -27,40 +27,22 @@ public struct LinkPreview: View {
                 }, label: {
                     LinkPreviewDesign(metaData: metaData, type: type, backgroundColor: backgroundColor, primaryFontColor: primaryFontColor, secondaryFontColor: secondaryFontColor, titleLineLimit: titleLineLimit)
                 })
-                    .buttonStyle(LinkButton())
-                    .fullScreenCover(isPresented: $isPresented) {
-                        SfSafariView(url: url)
-                            .edgesIgnoringSafeArea(.all)
-                    }
-                    .animation(.spring(), value: metaData)
+                    
             }
             else {
                 HStack(spacing: 10){
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: secondaryFontColor))
-                    
-                    Text(url.host ?? "")
-                        .font(.caption)
-                        .foregroundColor(primaryFontColor)
                 }
                 .padding(5)
                 .background(
                     Rectangle()
                         .foregroundColor(backgroundColor)
                 )
-                .clipShape(RoundedRectangle(cornerRadius: 9))
+                .clipShape(Circle())
                 .onAppear(perform: {
                     getMetaData(url: url)
                 })
-                .onTapGesture {
-                    if UIApplication.shared.canOpenURL(url) {
-                        self.isPresented.toggle()
-                    }
-                }
-                .fullScreenCover(isPresented: $isPresented) {
-                    SfSafariView(url: url)
-                        .edgesIgnoringSafeArea(.all)
-                }
             }
         }
     }
