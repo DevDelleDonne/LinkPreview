@@ -55,7 +55,8 @@ struct LinkPreviewDesign: View {
                 Image(uiImage: img)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    
+                    .frame(width: 33, height: 33)
+                    .clipShape(Circle())
             }
             else {
                 Image(systemName: "arrow.up.forward.app.fill")
