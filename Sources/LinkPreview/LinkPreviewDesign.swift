@@ -55,9 +55,7 @@ struct LinkPreviewDesign: View {
                 Image(uiImage: img)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 22, height: 22, alignment: .center)
-                    .clipped()
-                    .cornerRadius(4)
+                    
             }
             else {
                 Image(systemName: "arrow.up.forward.app.fill")
@@ -66,33 +64,7 @@ struct LinkPreviewDesign: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 22, height: 22, alignment: .center)
             }
-//                if let title = metaData.title {
-//                    Text(title)
-//                        .font(.subheadline)
-//                        .multilineTextAlignment(.leading)
-//                        .foregroundColor(primaryFontColor)
-//                        .lineLimit(titleLineLimit)
-//                }
-            if #available(iOS 16.0, *) {
-                if let url = metaData.url?.host() {
-                    Text("\(url)")
-                        .font(.subheadline)
-                        .multilineTextAlignment(.leading)
-                        .foregroundColor(primaryFontColor)
-                        .lineLimit(titleLineLimit)
-                }
-            } else {
-                // Fallback on earlier versions
-            }
-            
-            
         }
-        .padding(5)
-        .background(
-            Rectangle()
-                .foregroundColor(backgroundColor)
-        )
-        .clipShape(RoundedRectangle(cornerRadius: 9))
     }
     
     @ViewBuilder
